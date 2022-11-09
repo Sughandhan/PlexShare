@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -58,5 +58,10 @@
 	  <PackageReference Include="MaterialDesignColors" Version="2.0.9" />
 	  <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\PlexShareContent\PlexShareContent.csproj" />
+	  <ProjectReference Include="..\PlexShareDashboard\PlexShareDashboard.csproj" />
 	</ItemGroup>
 </Project>
