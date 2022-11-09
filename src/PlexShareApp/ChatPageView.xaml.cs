@@ -5,21 +5,13 @@
 /// </summary>
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using PlexShareApp.ViewModel;
 
@@ -42,12 +34,13 @@ namespace PlexShareApp
 
             var viewModel = new ChatPageViewModel();
 
-            // TODO: Subscribe to the Property Changed Event
+            // Subscribed to the Property Changed Event
+            viewModel.PropertyChanged += Listener;
+            DataContext = viewModel;
 
-
+            // Binding all the messages
             _allMessages = new ObservableCollection<Message>();
-            
-            // TODO: Binding all the messages
+            MainChat.ItemsSource = _allMessages;
             
         }
 
@@ -57,20 +50,16 @@ namespace PlexShareApp
         public int ReplyMsgId { get; set; }
 
         /// <summary>
-        /// Upa
+        /// Property Changed Evenet in which the view gets updated with new messages
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Listner(object sender, PropertyChangedEventArgs e)
+        /// <param name="sender"> Sender Notifying the event </param>
+        /// <param name="e"> Property Changed Event </param>
+        private void Listener(object sender, PropertyChangedEventArgs e)
         {
             var propertyName = e.PropertyName; ;
             var viewModel = DataContext as ChatPageViewModel;
 
-            if(propertyName == "ReceivedMsg")
-            {
-                _allMessages.Add(viewModel.ReceivedMsg);
-            }
-            else if(propertyName == "ReceivedMsgs")
+            if(propertyName == "ReceivedMsg" || propertyName == "ReceivedAllMsgs")
             {
                 _allMessages.Add(viewModel.ReceivedMsg);
             }
@@ -87,29 +76,82 @@ namespace PlexShareApp
             // Launch OpenFileDialog by calling ShowDialog method
             var result = openFileDialog.ShowDialog();
 
-            // Process open file diaalog box results
+            // Process open file dialog box results
             if(result == true)
             {
                 if(string.IsNullOrEmpty(ReplyTextBox.Text))
                 {
-                    viewModel.SendFile(openFileDialog.FileName, -1);
+                    viewModel.SendMessage(openFileDialog.FileName, -1, "File");
                 }
                 else
                 {
-                    viewModel.SendFile(openFileDialog.FileName, ReplyMsgId);
+                    viewModel.SendMessage(openFileDialog.FileName, ReplyMsgId, "File");
                 }
                 ReplyTextBox.Text = "";
             }
         }
 
+        /// <summary>
+        /// Event Handler on Clicking Send Button
+        /// </summary>
+        /// <param name="sender"> Notification Sender </param>
+        /// <param name="e"> Routed Event Data </param>
         private void SendButtonClick(object sender, RoutedEventArgs e)
         {
+            if(SendTextBox.Text != null && SendTextBox.Text != string.Empty)
+            {
+                var viewModel = DataContext as ChatPageViewModel;
 
+                if(ReplyTextBox.Text != null && ReplyTextBox.Text != string.Empty)
+                {
+                    viewModel.SendMessage(SendTextBox.Text, ReplyMsgId, "Chat");
+                }
+                else
+                {
+                    viewModel.SendMessage(SendTextBox.Text, -1, "Chat");
+                }
+            }
+            SendTextBox.Text = string.Empty;
+            ReplyTextBox.Text = string.Empty;
         }
 
         // TODO: Implement ReplyButtonClick event
+        /// <summary>
+        /// Event Handler on Clicking Reply Button
+        /// </summary>
+        /// <param name="sender"> Notification Sender</param>
+        /// <param name="e"> Routed Event Data </param>
+        private void ReplyButtonClick(object sender, RoutedEventArgs e)
+        {
+            if(sender is Button)
+            {
+                var cmd = (Button)sender;
+                if(cmd.DataContext is Message)
+                {
+                    var msg = (Message)cmd.DataContext;
+                    ReplyTextBox.Text = msg.IncomingMessage;
+                    ReplyMsgId = msg.MessageID;
+                }
+            }
+        }
 
         // TODO: Implement StarButtonClick event
+        private void StarButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton)
+            {
+                var cmd = (RadioButton)sender;
+
+                if (cmd.DataContext is Message)
+                {
+                    var msg = (Message)cmd.DataContext;
+                    var viewModel = DataContext as ChatPageViewModel;
+                    viewModel.StarChatMsg(msg.MessageID);
+                }
+
+            }
+
+        }
 
         // TODO: Implement DownloadButtonClick event
 
