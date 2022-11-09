@@ -93,7 +93,7 @@
                     <RowDefinition Height="20" />
                 </Grid.RowDefinitions>
                 <Grid Margin="0" Background="{StaticResource StaticSentMsg}" Grid.Row="0">
-                    <Grid.RowDefinitions>s
+                    <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
@@ -116,7 +116,7 @@
                                        Padding="8,5,8,5" Grid.Column="0" />
                         <!--TODO: Add a reply button click event-->
                         <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right"
-                                    Width="30" Margin="0,0,0,0" Click="ReplyButtonClick">
+                                    Width="30" Margin="0,0,0,0" >
                             <!--TODO:Add reply icon-->
                         </Button>
                     </Grid>
@@ -245,6 +245,7 @@
                                 <TextBlock Grid.Column="1" Foreground="{DynamicResource StaticTextClr}"
                                                Text="{Binding TextMessage}" x:Name="MainText" TextWrapping="Wrap"
                                                Width="150" FontSize="16" Padding="8,5,8,5" />
+                                <!--Add download button click event-->
                                 <Button Grid.Column="2" Background="Transparent" BorderBrush="Transparent"
                                             Click="DownloadButtonClick" HorizontalAlignment="Right" 
                                             Width="40" Margin="0,0,0,0">
@@ -252,8 +253,9 @@
                                 </Button>
                             </Grid>
                         </Border>
+                        <!--Add reply button click event-->
                         <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent"
-                                Click="ReplyButtonClick" HorizontalAlignment="Right" 
+                                 HorizontalAlignment="Right" 
                                 Width="30" Margin="0,0,0,0">
                             <!--TODO:Add icon for reply arrow-->
                         </Button>
@@ -330,15 +332,17 @@
                             <TextBlock Grid.Column="1" Foreground="{DynamicResource StaticSentReplyMsg}"
                                            Text="{Binding TextMessage}" x:Name="MainText" TextWrapping="Wrap"
                                            Width="150" FontSize="16" Padding="8,5,8,5" />
+                            <!--Add download button click event-->
                             <Button Grid.Column="2" Background="Transparent" BorderBrush="Transparent"
-                                    Click="DownloadButtonClick" HorizontalAlignment="Right" 
+                                     HorizontalAlignment="Right" 
                                     Width="40" Margin="0,0,0,0">
                                 <!--TODO:Add icon download-->
                             </Button>
                         </Grid>
                     </Border>
+                    <!--Add reply button click event-->
                     <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent"
-                            Click="ReplyButtonClick" HorizontalAlignment="Right" 
+                             HorizontalAlignment="Right" 
                             Width="30" Margin="0,0,0,0" >
                         <!--TODO:Add icon reply arrow-->
                     </Button>
