@@ -7,12 +7,7 @@
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
-	<PropertyGroup>
-		<EnableNETAnalyzers>true</EnableNETAnalyzers>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-	</PropertyGroup>
-
+    <PropertyGroup>
+	    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    </PropertyGroup>
 </Project>
