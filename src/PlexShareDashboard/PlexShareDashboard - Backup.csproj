@@ -14,8 +14,4 @@
 	<PropertyGroup>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="Unnoficial.Microsoft.Expression.Drawing" Version="1.0.0" />
-	</ItemGroup>
 </Project>

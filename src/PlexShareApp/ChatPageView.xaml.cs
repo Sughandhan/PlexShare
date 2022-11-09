@@ -1,4 +1,4 @@
-﻿/// <author>Sughandhan S</author>
+/// <author>Sughandhan S</author>
 /// <created>03/11/2022</created>
 /// <summary>
 ///     Interaction logic for ChatPageView.xaml.
@@ -140,6 +140,7 @@ namespace PlexShareApp
         /// </summary>
         /// <param name="sender"> Notification Sender </param>
         /// <param name="e"> Routed Event Data </param>
+
         private void StarButtonClick(object sender, RoutedEventArgs e)
         {
             if (sender is RadioButton)
