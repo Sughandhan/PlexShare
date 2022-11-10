@@ -4,6 +4,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
 	<PropertyGroup>
@@ -15,10 +16,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\PlexShareNetwork\PlexShareNetwork.csproj" />
+	  <PackageReference Include="Unnoficial.Microsoft.Expression.Drawing" Version="1.0.0" />
 	</ItemGroup>
 </Project>
