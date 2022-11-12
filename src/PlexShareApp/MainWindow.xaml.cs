@@ -24,8 +24,10 @@ namespace PlexShareApp
         public MainWindow()
         {
             InitializeComponent();
-            AuthenticationView authView = new AuthenticationView();
-            authView.Show();
+            //AuthenticationView authView = new AuthenticationView();
+            //authView.Show();
+            MainScreenView mainScreen = new MainScreenView();
+            mainScreen.Show();
             this.Close();
         }
 
